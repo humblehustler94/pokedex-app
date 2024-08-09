@@ -1,8 +1,9 @@
 let pokemonList = [
-    {name: 'Bulbasaur', height: '0.7', types: ['grass', 'poison']},
-    {name: 'Charizard', height: '1.7', types: ['fire', 'flying']},
-    {name: 'Squirtle', height: '0.5', types:['water']},
-];
+
+    { name: 'Bulbasaur', height: '0.7', weight: '6.9', types: ['grass', 'posion'] },
+    { name: 'Charizard', height: '1.7', weight: '90.5', types: ['fire', 'flying'] },
+    { name: 'Squirtle', height: '0.5', weight: '9', types: ['water'] },
+]
 
 for (let i = 0; i < pokemonList.length; i++) {
     if (pokemonList[i].height > 1.5) {
@@ -11,5 +12,5 @@ for (let i = 0; i < pokemonList.length; i++) {
         document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')' + '<br>');
     }
 }
-
+// this code executed in task 2.3
 
