@@ -3,8 +3,9 @@ let pokemonList = [
     { name: 'Bulbasaur', height: '0.7', weight: '6.9', types: ['grass', 'posion'] },
     { name: 'Charizard', height: '1.7', weight: '90.5', types: ['fire', 'flying'] },
     { name: 'Squirtle', height: '0.5', weight: '9', types: ['water'] },
-]
+];
 
+/*
 for (let i = 0; i < pokemonList.length; i++) {
     if (pokemonList[i].height > 1.5) {
         document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')' + ' - Wow, that\'s big!' + '<br>');
@@ -12,5 +13,19 @@ for (let i = 0; i < pokemonList.length; i++) {
         document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')' + '<br>');
     }
 }
+
+*/
+
 // this code executed in task 2.3
 
+
+// this line of code executes same as above but with forEach() function.
+pokemonList.forEach(pokemon => { 
+    let message = `${pokemon.name} (height: ${pokemon.height})`;
+    if (pokemon.height > 1.5) {
+        message += " - Wow, that's big!";
+    }
+    document.write(message + '<br>');
+  });
+
+  
