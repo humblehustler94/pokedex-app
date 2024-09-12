@@ -48,7 +48,7 @@ console.log(foundPoke); // This will log the Caterpie object if found
 
 
 // Iterating over the pokemonList using the getAll function and forEach
-
+/*
 pokemonRepository.getAll().forEach(pokemon => {
 
     let message = `${pokemon.name} (height: ${pokemon.height})`;
@@ -56,4 +56,24 @@ pokemonRepository.getAll().forEach(pokemon => {
         message += " - Wow, that's big!";
     }
     document.write(message + '<br>');
+    
+
 });
+*/
+
+// refactor the code above to the new code below 2.6 
+
+pokemonRepository.getAll().forEach(function(pokemon) {
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = "placeholder";
+    button.classList.add("button-class"); // add styles.css code for button
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+
+});
+
+// this code so far shows placeholder buttons in button list order.
+
+
