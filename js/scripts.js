@@ -55,8 +55,7 @@ let pokemonRepository = (function () {
 // added new pokemons to the list
 console.log(pokemonRepository.getAll());
 pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
-//pokemonRepository.add({ name: 'Caterpie', height: 0.3, weight: 2.9, types: ['bug'] });
-
+pokemonRepository.add({ name: 'Caterpie', height: 0.3, weight: 2.9, types: ['bug'] });
 
 
 //let foundPokemon = pokemonRepository.findByName('Pikachu');
