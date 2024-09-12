@@ -46,7 +46,7 @@ let pokemonRepository = (function () {
     }
     return {
         add: add,
-        findByName: findByName,
+        findByName: findByName, // code from 2.5
         getAll: getAll,
         addListItem: addListItem // code added in 2.6
     };
@@ -66,7 +66,7 @@ pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
 
 // Iterating over the pokemonList using the getAll function and forEach
 /*
-pokemonRepository.getAll().forEach(pokemon => {
+pokemonRepository.getAll().forEach(pokemon => { // 2.5 code
 
     let message = `${pokemon.name} (height: ${pokemon.height})`;
     if (pokemon.height > 1.5) {
@@ -86,27 +86,3 @@ pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
 
 });
-
-
-
-
-//let foundPokemon = pokemonRepository.findByName('Pikachu');
-//console.log(foundPokemon); // This will log the Pikachu object if found
-
-//let foundPoke = pokemonRepository.findByName('Caterpie');
-//console.log(foundPoke); // This will log the Caterpie object if found
-
-
-// Iterating over the pokemonList using the getAll function and forEach
-/*
-pokemonRepository.getAll().forEach(pokemon => {
-
-    let message = `${pokemon.name} (height: ${pokemon.height})`;
-    if (pokemon.height > 1.5) {
-        message += " - Wow, that's big!";
-    }
-    document.write(message + '<br>');
-    
-
-});
-*/
