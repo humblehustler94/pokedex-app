@@ -1,12 +1,13 @@
 let pokemonRepository = (function () {
-    let pokemonList = [
+
+    let repository = [
         { name: 'Bulbasaur', height: '0.7', weight: '6.9', types: ['grass', 'poison'] },
         { name: 'Charizard', height: '1.7', weight: '90.5', types: ['fire', 'flying'] },
         { name: 'Squirtle', height: '0.5', weight: '9', types: ['water'] },
     ];
 
     function getAll() {
-        return pokemonList;
+        return repository;
     }
 
     function add(pokemon) {
@@ -16,14 +17,14 @@ let pokemonRepository = (function () {
             'weight' in pokemon && typeof pokemon.weight === 'number' &&
             'types' in pokemon && Array.isArray(pokemon.types)) {
 
-            pokemonList.push(pokemon);
+            repository.push(pokemon);
         } else {
             console.log('Invalid Pokémon object');
         }
     }
 
     function findByName(name) {
-        return pokemonList.filter(pokemon => pokemon.name.toLowerCase() === name.toLowerCase());
+        return repository.filter(pokemon => pokemon.name.toLowerCase() === name.toLowerCase());
     }
 
     return {
@@ -31,6 +32,8 @@ let pokemonRepository = (function () {
         add: add,
         findByName: findByName
     };
+
+
 })();
 
 
@@ -63,7 +66,7 @@ pokemonRepository.getAll().forEach(pokemon => {
 
 // refactor the code above to the new code below 2.6 
 
-pokemonRepository.getAll().forEach(function(pokemon) {
+pokemonRepository.getAll().forEach(function (pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
     let listpokemon = document.createElement("li");
     let button = document.createElement("button");
