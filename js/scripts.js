@@ -39,13 +39,13 @@ let pokemonRepository = (function () {
     }
     function addListItem(pokemon){ // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
         let pokemonList = document.querySelector(".pokemon-list");
-        let listpokemon = document.createElement("li"); // create li elememnt
+        let listItemPokemon = document.createElement("li"); // create li elememnt
         let button = document.createElement("button"); // creates a button
         // set the button text and class
         button.innerText = pokemon.name;
         button.classList.add("button-class"); // targets css rule for style to button.
         //append the button to the list item, and the list item to the list
-        listpokemon.appendChild(button);
+        listItemPokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
         // add event listener to the button code added as part of 2.6 task.
         button.addEventListener("click",function() {
