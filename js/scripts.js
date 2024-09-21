@@ -1,4 +1,5 @@
 let pokemonRepository = (function () {
+
     let pokemonList = [
         {
             name: "Bulbasaur",
@@ -46,7 +47,7 @@ let pokemonRepository = (function () {
         button.classList.add("button-class"); // targets css rule for style to button.
         //append the button to the list item, and the list item to the list
         listItemPokemon.appendChild(button);
-        pokemonList.appendChild(listpokemon);
+        pokemonList.appendChild(listItemPokemon);
         // add event listener to the button code added as part of 2.6 task.
         button.addEventListener("click",function() {
             showDetails(pokemon); // pass the pokemon object to showDetails
@@ -97,3 +98,7 @@ if (pokemon.height > 1.5) {
 document.write(message + '<br>');
 });
 */
+
+
+// implement loadList and loadDetails functions
+
