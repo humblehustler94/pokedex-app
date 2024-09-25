@@ -6,27 +6,28 @@ let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    function getAll() {
-        return pokemonList;
-    }
+    // remove height, weight, types from code
 
     function add(pokemon) {
         if (typeof pokemon === 'object' &&
-            'name' in pokemon && typeof pokemon.name === 'string' &&
-            'height' in pokemon && typeof pokemon.height === 'number' &&
-            'weight' in pokemon && typeof pokemon.weight === 'number' &&
-            'types' in pokemon && Array.isArray(pokemon.types)) {
-
+            'name' in pokemon
+        ) {
             pokemonList.push(pokemon);
         } else {
             console.log('Invalid Pokémon object');
         }
     }
+
     // function findByName task 2.5
     function findByName(name) {
         return pokemonList.filter(pokemon => pokemon.name.toLowerCase() === name.toLowerCase());
     }
-    function addListItem(pokemon){ // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
+
+    function getAll() {
+        return pokemonList;
+    }
+
+    function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
         let pokemonList = document.querySelector(".pokemon-list");
         let listItemPokemon = document.createElement("li"); // create li elememnt
         let button = document.createElement("button"); // creates a button
@@ -37,34 +38,82 @@ let pokemonRepository = (function () {
         listItemPokemon.appendChild(button);
         pokemonList.appendChild(listItemPokemon);
         // add event listener to the button code added as part of 2.6 task.
-        button.addEventListener("click",function() {
+        button.addEventListener("click", function () {
             showDetails(pokemon); // pass the pokemon object to showDetails
         });
     }
+
+    // 2.7 code add loadList() function
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon);
+                console.log(pokemon);
+            });
+        }).catch(function (e) {
+            console.error(e);
+        });
+    }
+
+    // add loadDetails () function
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            // Now we add the details to the item
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
+    }
+
+    // function showDetails task 2.6
+    // 2.7 new code added inside function
+    // loadDetails(pokemon).then(function() {
     function showDetails(pokemon) {
-        console.log(pokemon);
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon);
+        });
     }
 
     return {
-        getAll: getAll,
         add: add,
-        findByName: findByName,// 2.5 task code.
-        addListItem: addListItem, // code added in 2.6 task.
-        showDetails: showDetails // code added in 2.6 task.
+        findByName: findByName, // 2.5 task code
+        getAll: getAll,
+        addListItem: addListItem, // 2.6 task code
+        loadList: loadList,// 2.7 task code recently added
+        loadDetails: loadDetails, // 2.7 task code recently added
+        showDetails: showDetails // 2.6 task code
     };
+
 })();
 
 
-console.log(pokemonRepository.getAll());
+//console.log(pokemonRepository.getAll());
+/*
 pokemonRepository.add({ name: 'Pikachu', height: 0.4, weight: 6.0, types: ['electric'] }); // added new pokemons to the list
 
 pokemonRepository.add({ name: 'Caterpie', height: 0.3, weight: 2.9, types: ['bug'] });
+*/
 
-console.log(pokemonRepository.getAll());
+//console.log(pokemonRepository.getAll());
 
-pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
 
+// 2.7 task code
+// created this new function in 2.7 to add the list items to the page
+pokemonRepository.loadList().then(function() {
+    pokemonRepository.getAll().forEach(function(pokemon) {
+        pokemonRepository.addListItem(pokemon);
+    });
 });
 
 
