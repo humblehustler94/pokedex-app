@@ -1,22 +1,10 @@
 let pokemonRepository = (function () {
 
-    let pokemonList = [
-        {
-            name: "Bulbasaur",
-            height: 0.7,
-            types: ["grass", "poison"],
-        },
-        {
-            name: "Charizard",
-            height: 1.7,
-            types: ["fire", "flying"],
-        },
-        {
-            name: "Squirtle",
-            height: 1,
-            types: ["water"],
-        },
-    ];
+    //2.7 connecting to the API
+    // remove items within []
+    // add let apiUrl 
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     function getAll() {
         return pokemonList;
