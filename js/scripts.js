@@ -6,8 +6,23 @@ let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    // remove height, weight, types from code
+    // 2.7 task add function to show a loading message
+    function showLoadingMessage() {
+        let loadingMessage = document.createElement('p');
+        loadingMessage.innerText = 'Loading...';
+        loadingMessage.classList.add('loading-message');
+        document.querySelector('.pokemon-list').appendChild(loadingMessage);
+    }
 
+    // 2.7 task add function to hide a loading message
+    function hideLoadingMessage() {
+        let loadingMessage = document.querySelector('.loading-message');
+        if (loadingMessage) {
+            loadingMessage.remove();
+        }
+    }
+
+    // 2.7 refactor code to remove  height, weight, types
     function add(pokemon) {
         if (typeof pokemon === 'object' &&
             'name' in pokemon
@@ -18,7 +33,7 @@ let pokemonRepository = (function () {
         }
     }
 
-    // function findByName task 2.5
+    // 2.5 bonus task function findByName
     function findByName(name) {
         return pokemonList.filter(pokemon => pokemon.name.toLowerCase() === name.toLowerCase());
     }
@@ -27,6 +42,7 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
+    // 2.7 move this function addListItem(pokemon) up here under function getAll()
     function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
         let pokemonList = document.querySelector(".pokemon-list");
         let listItemPokemon = document.createElement("li"); // create li elememnt
@@ -44,10 +60,13 @@ let pokemonRepository = (function () {
     }
 
     // 2.7 code add loadList() function
+    // refactor code to use showLoadingMessage() and hideLoadingMessage()
     function loadList() {
+        showLoadingMessage(); // show loading before starting the fetch
         return fetch(apiUrl).then(function (response) {
             return response.json();
         }).then(function (json) {
+            hideLoadingMessage(); // hide loading after the data is complete
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
@@ -57,16 +76,20 @@ let pokemonRepository = (function () {
                 console.log(pokemon);
             });
         }).catch(function (e) {
+            hideLoadingMessage(); // hide loading if an error occurs
             console.error(e);
         });
     }
 
-    // add loadDetails () function
+    // 2.7 add loadDetails () function
+    // refactor code to use showLoadingMessage() and hideLoadingMessage()
     function loadDetails(item) {
+        showLoadingMessage(); // show loading when fetching details 
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
             return response.json();
         }).then(function (details) {
+            hideLoadingMessage(); // hide loading after the details are fetched
             // Now we add the details to the item
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
@@ -110,8 +133,8 @@ pokemonRepository.add({ name: 'Caterpie', height: 0.3, weight: 2.9, types: ['bug
 
 // 2.7 task code
 // created this new function in 2.7 to add the list items to the page
-pokemonRepository.loadList().then(function() {
-    pokemonRepository.getAll().forEach(function(pokemon) {
+pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
 });
