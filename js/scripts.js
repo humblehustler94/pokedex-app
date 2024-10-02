@@ -95,12 +95,14 @@ let pokemonRepository = (function () {
             item.height = details.height;
             item.types = details.types;
         }).catch(function (e) {
+            hideLoadingMessage(); // hide loading if an error occurs 
             console.error(e);
         });
     }
 
     // function showDetails task 2.6
-    // 2.7 new code added inside function
+    // 2.7 new code added inside function showDetails
+    // code was refactored.
     // loadDetails(pokemon).then(function() {
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
