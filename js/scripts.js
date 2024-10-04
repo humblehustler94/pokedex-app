@@ -1,12 +1,16 @@
 let pokemonRepository = (function () {
 
-    //2.7 connecting to the API
-    // remove items within []
-    // add let apiUrl 
+    // empty array to store pokemon - 2.7
+    // connect to an external API - 2.7
+    // apply modal container to the pokemon list - 2.8
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    // 2.7 task add function to show a loading message
+    // new code for modal & dialog - 2.8
+    let modalContainer = document.querySelector('#modal-container');
+    let dialogPromiseRejects; // this can be set later, by showDialog
+
+    // function to show a loading message
     function showLoadingMessage() {
         let loadingMessage = document.createElement('p');
         loadingMessage.innerText = 'Loading...';
@@ -14,7 +18,7 @@ let pokemonRepository = (function () {
         document.querySelector('.pokemon-list').appendChild(loadingMessage);
     }
 
-    // 2.7 task add function to hide a loading message
+    // function to hide a loading message
     function hideLoadingMessage() {
         let loadingMessage = document.querySelector('.loading-message');
         if (loadingMessage) {
@@ -23,24 +27,95 @@ let pokemonRepository = (function () {
     }
 
     // 2.7 refactor code to remove  height, weight, types
+    // 2.8 refactor code 
     function add(pokemon) {
         if (typeof pokemon === 'object' &&
-            'name' in pokemon
+            'name' in pokemon &&
+            'detailsUrl' in pokemon // new line of code.
         ) {
             pokemonList.push(pokemon);
         } else {
             console.log('Invalid Pokémon object');
         }
     }
+    // move function getAll() here
+    function getAll() {
+        return pokemonList;
+    }
+
+    // move function loadList here
+
+    // 2.7 code add loadList() function
+    // refactor code to use showLoadingMessage() and hideLoadingMessage()
+    function loadList() {
+        showLoadingMessage(); // show loading before starting the fetch
+        return fetch(apiUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                hideLoadingMessage(); // hide loading after the data is complete
+                json.results.forEach(function (item) {
+                    let pokemon = {
+                        name: item.name,
+                        detailsUrl: item.url
+                    };
+                    add(pokemon);
+                    console.log(pokemon);
+                });
+            })
+            .catch(function (e) {
+                hideLoadingMessage(); // hide loading if an error occurs
+                console.error(e);
+            });
+    }
+
+    // move function loadDetails here
+    // 2.7 add loadDetails () function
+    // refactor code to use showLoadingMessage() and hideLoadingMessage()
+    function loadDetails(pokemon) {
+        showLoadingMessage(); // show loading when fetching details 
+        let url = pokemon.detailsUrl;
+        return fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (details) {
+                hideLoadingMessage(); // hide loading after the details are fetched
+                // Now we add the details to the item
+                pokemon.imageUrl = details.sprites.front_default;
+                pokemon.height = details.height;
+                pokemon.types = details.types;
+            })
+            .catch(function (e) {
+                hideLoadingMessage(); // hide loading if an error occurs 
+                console.error(e);
+            });
+    }
+
+    // move function showDetails here
+    // function showDetails task 2.6
+    // 2.7 new code added inside function showDetails
+    // code was refactored.
+    // loadDetails(pokemon).then(function() {
+    function showDetails(pokemon) {
+        loadDetails(pokemon).then(function () {
+            showModal(pokemon);
+           // console.log(pokemon);
+        });
+    }
+
+    // add function showModal(pokemon) here to display pokemon detials
+    
+
+
+
 
     // 2.5 bonus task function findByName
     function findByName(name) {
         return pokemonList.filter(pokemon => pokemon.name.toLowerCase() === name.toLowerCase());
     }
 
-    function getAll() {
-        return pokemonList;
-    }
 
     // 2.7 move this function addListItem(pokemon) up here under function getAll()
     function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
@@ -59,56 +134,7 @@ let pokemonRepository = (function () {
         });
     }
 
-    // 2.7 code add loadList() function
-    // refactor code to use showLoadingMessage() and hideLoadingMessage()
-    function loadList() {
-        showLoadingMessage(); // show loading before starting the fetch
-        return fetch(apiUrl).then(function (response) {
-            return response.json();
-        }).then(function (json) {
-            hideLoadingMessage(); // hide loading after the data is complete
-            json.results.forEach(function (item) {
-                let pokemon = {
-                    name: item.name,
-                    detailsUrl: item.url
-                };
-                add(pokemon);
-                console.log(pokemon);
-            });
-        }).catch(function (e) {
-            hideLoadingMessage(); // hide loading if an error occurs
-            console.error(e);
-        });
-    }
 
-    // 2.7 add loadDetails () function
-    // refactor code to use showLoadingMessage() and hideLoadingMessage()
-    function loadDetails(item) {
-        showLoadingMessage(); // show loading when fetching details 
-        let url = item.detailsUrl;
-        return fetch(url).then(function (response) {
-            return response.json();
-        }).then(function (details) {
-            hideLoadingMessage(); // hide loading after the details are fetched
-            // Now we add the details to the item
-            item.imageUrl = details.sprites.front_default;
-            item.height = details.height;
-            item.types = details.types;
-        }).catch(function (e) {
-            hideLoadingMessage(); // hide loading if an error occurs 
-            console.error(e);
-        });
-    }
-
-    // function showDetails task 2.6
-    // 2.7 new code added inside function showDetails
-    // code was refactored.
-    // loadDetails(pokemon).then(function() {
-    function showDetails(pokemon) {
-        loadDetails(pokemon).then(function () {
-            console.log(pokemon);
-        });
-    }
 
     return {
         add: add,
