@@ -73,6 +73,7 @@ let pokemonRepository = (function () {
     // move function loadDetails here
     // 2.7 add loadDetails () function
     // refactor code to use showLoadingMessage() and hideLoadingMessage()
+    // refactor code to display pokemon types 
     function loadDetails(pokemon) {
         showLoadingMessage(); // show loading when fetching details 
         let url = pokemon.detailsUrl;
@@ -85,7 +86,12 @@ let pokemonRepository = (function () {
                 // Now we add the details to the item
                 pokemon.imageUrl = details.sprites.front_default;
                 pokemon.height = details.height;
-                pokemon.types = details.types;
+                // new code here to display pokemon types
+                //pokemon.types = details.types;
+                pokemon.types =[];
+                details.types.forEach(function(typeArray) {
+                    pokemon.types.push(typeArray.type.name)
+                });
             })
             .catch(function (e) {
                 hideLoadingMessage(); // hide loading if an error occurs 
@@ -105,7 +111,8 @@ let pokemonRepository = (function () {
         });
     }
 
-    // add mew function showModal(pokemon) here to display pokemon detials
+    // add new function showModal(pokemon) here to display pokemon detials
+    // refactor let typesElement to display pokemon types in modal.
     function showModal(pokemon) {
         modalContainer.innerHTML = ''; // clears previous content
 
@@ -130,7 +137,7 @@ let pokemonRepository = (function () {
         heightElement.innerText = 'Height: ' + pokemon.height;
 
         let typesElement = document.createElement('p');
-        typesElement.innerText = 'Types: ' + pokemon.types;
+        typesElement.innerText = 'Types: ' + pokemon.types.join(',');
 
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
@@ -173,7 +180,7 @@ let pokemonRepository = (function () {
         let pokemonList = document.querySelector(".pokemon-list");
         let listItemPokemon = document.createElement("li"); // create li elememnt
         let button = document.createElement("button"); // creates a button
-        
+
         // set the button text and class
         button.innerText = pokemon.name;
         button.classList.add("button-class"); // targets css rule for style to button.
