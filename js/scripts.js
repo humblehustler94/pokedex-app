@@ -1,5 +1,4 @@
 let pokemonRepository = (function () {
-
     // empty array to store pokemon - 2.7
     // connect to an external API - 2.7
     // apply modal container to the pokemon list - 2.8
@@ -61,7 +60,8 @@ let pokemonRepository = (function () {
                         detailsUrl: item.url
                     };
                     add(pokemon);
-                    console.log(pokemon);
+                    //console.log(pokemon);
+                    // removes logging pokemon in console
                 });
             })
             .catch(function (e) {
@@ -88,8 +88,8 @@ let pokemonRepository = (function () {
                 pokemon.height = details.height;
                 // new code here to display pokemon types
                 //pokemon.types = details.types;
-                pokemon.types =[];
-                details.types.forEach(function(typeArray) {
+                pokemon.types = [];
+                details.types.forEach(function (typeArray) {
                     pokemon.types.push(typeArray.type.name)
                 });
             })
@@ -152,6 +152,11 @@ let pokemonRepository = (function () {
     // add new function 2.8
     function hideModal() {
         modalContainer.classList.remove('is-visible');
+
+        if (dialogPromiseRejects) {
+            dialogPromiseRejects();
+            dialogPromiseRejects = null;
+        }
     }
 
     // add new code 2.8
