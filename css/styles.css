@@ -16,7 +16,6 @@ h1 {
 .pokemon-list {
   list-style-type: none;
   text-align: center;
-  border: 2px solid black;
 }
 
 .button-class {
@@ -108,3 +107,4 @@ h1 {
 .container {
   margin-top: 60px;
 }
+
