@@ -7,7 +7,7 @@
     <!-- adding a responsive meta tag to app-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Simple JS App</title>
+    <title>PokeDex App</title>
     <link rel="shortcut icon" href="img/pokemon-logo.png">
 
     <!-- added bootstrap to app via CDN link : placed before my own styles.css tag-->
@@ -21,16 +21,29 @@
 <body>
 
     <!--new code added 2.10-->
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html"><img src="img/pokemon-logo.png">Home</a>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="index.html"><img src="img/pokemon-logo.png" alt="pokemon-logo">Home</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
     </nav>
 
-    <div>
+    <div class="container">
         <h1>PokeDex App</h1>
         <ul class="pokemon-list">
             <!--list of pokemon will be dynamically be added here-->
         </ul>
+    </div>
+
+    <!--new code added 2.10 ul class= list-group and li class= list-group-item-->
+    <div id="modal-container">
+        <ul class="list-group">
+            <li class="list-group-item"></li>
+        </ul>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Primary</button>
     </div>
 
 
@@ -39,15 +52,6 @@
     <!-- modal repl html code -->
     <button id="show-modal">Show modal</button>
 
-    <div id="modal-container">
-
-        <!--- <div class='modal'>
-            <button class='modal-close'>Close</button>
-            <h1>Modal title</h1>
-            <p>Modal text</p>       
-          </div> -->
-
-    </div>
 
     <!--add 3 script bootstrap tags-->
     <!--replace the first script tag to min.js instead of slim.min.js-->
@@ -63,7 +67,7 @@
         crossorigin="anonymous"></script>
 
     <!--2.7 order of scripts matters 1. promise-polyfill.js 2. fetch-polyfill.js -->
-    <script scr="js/promise-polyfill.js"></script>
+    <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>
     <script src="js/scripts.js"></script>
 </body>
