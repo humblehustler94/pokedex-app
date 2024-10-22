@@ -112,21 +112,17 @@ let pokemonRepository = (function () {
     }
 
     // add new function showModal(pokemon) here to display pokemon detials
-    // refactor let typesElement to display pokemon types in modal.
+    // refactor code 2.10 for bootstrap modal
+
     function showModal(pokemon) {
-        modalContainer.innerHTML = ''; // clears previous content
 
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+        let modalTitle = document.querySelector('.modal-title');
+        let modalBody = document.querySelector('.modal-body');
 
-        // add the new modal content here
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        closeButtonElement.addEventListener('click', hideModal);
+        modalTitle.innerText = pokemon.name;
+        modalBody.innerText = ''; // clears previous modal content
 
-        let titleElement = document.createElement('h1');
-        titleElement.innerText = pokemon.name;
+        //modalContainer.innerHTML = ''; // clears previous content
 
         let imageElement = document.createElement('img');
         imageElement.classList.add('modal-img');
@@ -134,19 +130,26 @@ let pokemonRepository = (function () {
         imageElement.alt = pokemon.name + 'image';
 
         let heightElement = document.createElement('p');
-        heightElement.innerText = 'Height: ' + pokemon.height;
+        heightElement.innerText = 'Height:' + pokemon.height;
 
         let typesElement = document.createElement('p');
-        typesElement.innerText = 'Types: ' + pokemon.types.join(',');
+        typesElement.innerText = 'Types:' + pokemon.types.join(',');
 
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(titleElement);
-        modal.appendChild(imageElement);
-        modal.appendChild(heightElement);
-        modal.appendChild(typesElement);
-        modalContainer.appendChild(modal);
+        // append new elements
+        modalBody.appendChild(imageElement);
+        modalBody.appendChild(heightElement);
+        modalBody.appendChild(typesElement);
 
-        modalContainer.classList.add('is-visible');
+        // bootstrap modal display
+        $('#pokemonModal').modal('show');
+
+
+        // add the new modal content here
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+
     }
 
     // add new function 2.8
@@ -181,14 +184,25 @@ let pokemonRepository = (function () {
 
 
     // 2.7 move this function addListItem(pokemon) up here under function getAll()
+    // refactor code 2.10 
     function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
         let pokemonList = document.querySelector(".pokemon-list");
         let listItemPokemon = document.createElement("li"); // create li elememnt
+
+        // new code : add bootstrap class for list group
+        listItemPokemon.classList.add('list-group-item');
+
         let button = document.createElement("button"); // creates a button
 
         // set the button text and class
         button.innerText = pokemon.name;
-        button.classList.add("button-class"); // targets css rule for style to button.
+        button.classList.add("btn"); // targets css rule for style to button. // changed no longer targets css rule for style to button
+
+        // new code lines 2.10
+        button.setAttribute('data-toggle', 'modal');
+        button.setAttribute('data-target', '#pokemonModal');
+        //targets css rules for style to button
+
 
         //append the button to the list item, and the list item to the list
         listItemPokemon.appendChild(button);
