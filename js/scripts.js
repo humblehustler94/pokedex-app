@@ -1,11 +1,9 @@
 let pokemonRepository = (function () {
-    // empty array to store pokemon - 2.7
-    // connect to an external API - 2.7
-    // apply modal container to the pokemon list - 2.8
+
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-    // new code for modal & dialog - 2.8
+ 
     let modalContainer = document.querySelector('#modal-container');
     let dialogPromiseRejects; // this can be set later, by showDialog
 
@@ -25,8 +23,7 @@ let pokemonRepository = (function () {
         }
     }
 
-    // 2.7 refactor code to remove  height, weight, types
-    // 2.8 refactor code 
+
     function add(pokemon) {
         if (typeof pokemon === 'object' &&
             'name' in pokemon &&
@@ -37,15 +34,14 @@ let pokemonRepository = (function () {
             console.log('Invalid Pokémon object');
         }
     }
-    // move function getAll() here
+   
     function getAll() {
         return pokemonList;
     }
 
-    // move function loadList here
+ 
 
-    // 2.7 code add loadList() function
-    // refactor code to use showLoadingMessage() and hideLoadingMessage()
+    
     function loadList() {
         showLoadingMessage(); // show loading before starting the fetch
         return fetch(apiUrl)
@@ -70,10 +66,7 @@ let pokemonRepository = (function () {
             });
     }
 
-    // move function loadDetails here
-    // 2.7 add loadDetails () function
-    // refactor code to use showLoadingMessage() and hideLoadingMessage()
-    // refactor code to display pokemon types 
+    
     function loadDetails(pokemon) {
         showLoadingMessage(); // show loading when fetching details 
         let url = pokemon.detailsUrl;
@@ -99,11 +92,7 @@ let pokemonRepository = (function () {
             });
     }
 
-    // move function showDetails here
-    // function showDetails task 2.6
-    // 2.7 new code added inside function showDetails
-    // code was refactored.
-    // loadDetails(pokemon).then(function() {
+   
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
             showModal(pokemon);
@@ -229,14 +218,6 @@ let pokemonRepository = (function () {
 })();
 
 
-//console.log(pokemonRepository.getAll());
-/*
-pokemonRepository.add({ name: 'Pikachu', height: 0.4, weight: 6.0, types: ['electric'] }); // added new pokemons to the list
-
-pokemonRepository.add({ name: 'Caterpie', height: 0.3, weight: 2.9, types: ['bug'] });
-*/
-
-//console.log(pokemonRepository.getAll());
 
 
 // 2.7 task code
@@ -248,25 +229,4 @@ pokemonRepository.loadList().then(function () {
 });
 
 
-//let foundPokemon = pokemonRepository.findByName('Pikachu');
-//console.log(foundPokemon); // This will log the Pikachu object if found
-
-//let foundPoke = pokemonRepository.findByName('Caterpie');
-//console.log(foundPoke); // This will log the Caterpie object if found
-
-// Iterating over the pokemonList using the getAll function and forEach
-
-
-/*
-pokemonRepository.getAll().forEach(pokemon => {
-let message = `${pokemon.name} (height: ${pokemon.height})`;
-if (pokemon.height > 1.5) {
-    message += " - Wow, that's big!";
-}
-document.write(message + '<br>');
-});
-*/
-
-
-// implement loadList and loadDetails functions
 
