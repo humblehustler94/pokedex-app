@@ -105,7 +105,32 @@ let pokemonRepository = (function () {
     // function to display Pokemon details in a Bootstrap modal
     // revision per mentor request
     function showModal(pokemon) {
-        modalContainer.innerHTML = ''; // clears previous content
+        let modalTitle = document.querySelector('.modal-title');
+        let modalBody = document.querySelector('.modal-body');
+
+        modalTitle.innerText = pokemon.name;
+        modalBody.innerText = ''; // clears all previous content
+
+        let imageElement = document.createElement('img');
+        imageElement.classList.add('modal-img');
+        imageElement.src = pokemon.imageUrl;
+        imageElement.alt = pokemon.name + 'image';
+
+        let heightElement = document.createElement('p');
+        heightElement.innerText = 'Height: ' + pokemon.height;
+
+        let typesElement = document.createElement('p');
+        typesElement.innerText = 'Types: ' + pokemon.types.join(', ');
+    
+        // append new elements 
+        modalBody.appendChild(imageElement);
+        modalBody.appendChild(heightElement);
+        modalBody.appendChild(typesElement);
+
+        // new code line to display modal
+        $('#pokemonModal').modal('show'); // bootstraps modal display method
+
+        //modalContainer.innerHTML = ''; // clears previous content
 
         let modal = document.createElement('div');
         modal.classList.add('modal');
@@ -114,31 +139,6 @@ let pokemonRepository = (function () {
         closeButtonElement.classList.add('modal-close');
         closeButtonElement.innerText = 'Close';
         closeButtonElement.addEventListener('click', hideModal);
-    
-        let titleElement = document.createElement('h1');
-        titleElement.innerText = pokemon.name;
-    
-        let imageElement = document.createElement('img');
-        imageElement.classList.add('modal-img');
-        imageElement.src = pokemon.imageUrl;
-        imageElement.alt = pokemon.name + 'image';
-    
-        let heightElement = document.createElement('p');
-        heightElement.innerText = 'Height: ' + pokemon.height;
-        // new code line added
-        let typesElement = document.createElement('p');
-        typesElement.innerText = 'Types: ' + pokemon.types.join(', ');
-    
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(titleElement);
-        modal.appendChild(imageElement);
-        modal.appendChild(heightElement);
-        modal.appendChild(typesElement);
-        modalContainer.appendChild(modal);
-    
-        modalContainer.classList.add('is-visible');
-
-
     }
 
     // add new function 2.8
