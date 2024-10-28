@@ -1,9 +1,9 @@
 let pokemonRepository = (function () {
-
+    // empty array to store pokemon list - 2.7
     let pokemonList = [];
+    // connect to an external API - 2.7
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-
-    // comment out the following code - no longer needed after task 2.10 remove old modal content
+    // apply modal container to the pokemon list - 2.8
     let modalContainer = document.querySelector('#modal-container');
     let dialogPromiseRejects; // this can be set later, by showDialog
 
