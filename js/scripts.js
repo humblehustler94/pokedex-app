@@ -105,40 +105,39 @@ let pokemonRepository = (function () {
     // function to display Pokemon details in a Bootstrap modal
     // revision per mentor request
     function showModal(pokemon) {
+        modalContainer.innerHTML = ''; // clears previous content
 
-        let modalTitle = document.querySelector('.modal-title');
-        let modalBody = document.querySelector('.modal-body');
-
-        modalTitle.innerText = pokemon.name;
-        modalBody.innerText = ''; // clears previous modal content
-
-        //modalContainer.innerHTML = ''; // clears previous content
-
-        let imageElement = document.createElement('img');
-        imageElement.classList.add('modal-img');
-        imageElement.src = pokemon.imageUrl;
-        imageElement.alt = pokemon.name + 'image';
-
-        let heightElement = document.createElement('p');
-        heightElement.innerText = 'Height:' + pokemon.height;
-
-        let typesElement = document.createElement('p');
-        typesElement.innerText = 'Types:' + pokemon.types.join(',');
-
-        // append new elements
-        modalBody.appendChild(imageElement);
-        modalBody.appendChild(heightElement);
-        modalBody.appendChild(typesElement);
-
-        // bootstrap modal display
-        $('#pokemonModal').modal('show');
-
-
-        // add the new modal content here
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+        // Add the new modal content
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
         closeButtonElement.innerText = 'Close';
         closeButtonElement.addEventListener('click', hideModal);
+    
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = pokemon.name;
+    
+        let imageElement = document.createElement('img');
+        imageElement.classList.add('modal-img');
+        imageElement.src = pokemon.imageUrl;
+        imageElement.alt = pokemon.name + 'image';
+    
+        let heightElement = document.createElement('p');
+        heightElement.innerText = 'Height: ' + pokemon.height;
+        // new code line added
+        let typesElement = document.createElement('p');
+        typesElement.innerText = 'Types: ' + pokemon.types.join(', ');
+    
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(imageElement);
+        modal.appendChild(heightElement);
+        modal.appendChild(typesElement);
+        modalContainer.appendChild(modal);
+    
+        modalContainer.classList.add('is-visible');
+
 
     }
 
@@ -178,27 +177,21 @@ let pokemonRepository = (function () {
     // function to add a Pokemon item to the list
     // revision per mentor request 
     function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
+        // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
         let pokemonList = document.querySelector(".pokemon-list");
-
-        let listItem = document.createElement("li");
-        listItem.classList.add('list-group-item');
-        // add rest of the listItem content here 
-
-
+        let listItemPokemon = document.createElement("li"); // create li elememnt
         let button = document.createElement("button"); // creates a button
         // set the button text and class
         button.innerText = pokemon.name;
-        button.classList.add("btn, btn-primary"); // targets css rule for style to button. // changed no longer targets css rule for style to button
-
-        
+        button.classList.add("button-class"); // targets css rule for style to button.
         //append the button to the list item, and the list item to the list
-        listItem.appendChild(button);
-        pokemonList.appendChild(listItem);
-
+        listItemPokemon.appendChild(button);
+        pokemonList.appendChild(listItemPokemon);
         // add event listener to the button code added as part of 2.6 task.
         button.addEventListener("click", function () {
             showDetails(pokemon); // pass the pokemon object to showDetails
         });
+
     }
 
 

@@ -12,6 +12,8 @@
 
     <!-- added bootstrap to app via CDN link : placed before my own styles.css tag-->
     <!--bootstrap css-->
+    <!-- bootstrap.css -->
+    <!-- step 1-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -19,80 +21,55 @@
 </head>
 
 <body>
-
-    <!--new code added 2.10-->
     <header>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="index.html"><img src="img/pokemon-logo.png" alt="pokemon-logo">PokeDex App</a>
+        <!--adding navbar to my app - new code introduced in 2.10 -->
+        <!-- step 5-->
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-            </ul>
-        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"><img src="img/pokemon-logo.png" alt="pokemon-logo">PokeDex App</a>
+            <!-- step 6: add the navbar-toggler-icon -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </ul>
 
-    </nav>
-    </header>
-
-    <main>
-        <!-- main pokemon content here-->
-         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <h1 class="text-center">Pokemon List</h1>
-                    <div>
-                        <ul class="list-group pokemon-list"></ul>
-                    </div>
-                </div>
+                <!-- new code in 2.10 search bar with search button-->
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
-         </div>
 
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pokemonModal"></button>
-
-         <!--modal content here 2.10-->
-         <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel"
-         aria-hidden="true">
-         <div class="modal-dialog" role="document">
-           <div class="modal-content">
-             <div class="modal-header">
-               <h5 class="modal-title" id="pokemonModalLabel">Modal title</h5>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-             <div class="modal-body">
-               <ul class="list-group pokemon-list">
-                 <li class="list-group-item"></li>
-               </ul>
-               ...
-             </div>
-             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="button" class="btn btn-primary">Save changes</button>
-             </div>
-           </div>
-         </div>
-       </div>
-         
+        </nav>
+    </header>
+    <main>
+        <div id="modal-container"></div> 
 
     </main>
+    <footer>
 
-    
+    </footer>
 
-   
 
-    <!--add 3 script bootstrap tags-->
-    <!--replace the first script tag to min.js instead of slim.min.js-->
-    <!--jQuery first,then Popper.js, then bootstrap JS-->
+    <h1>Pokemon List</h1>
+    <ul class="pokemon-list"></ul>
+
+
+
+
+    <!-- step 2 -->
+    <!-- adding bootstrap script tags to my app -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- step 3 : replace top script tag with min.js from jquery cdn link -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
