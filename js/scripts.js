@@ -179,26 +179,21 @@ let pokemonRepository = (function () {
     // revision per mentor request 
     function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
         let pokemonList = document.querySelector(".pokemon-list");
-        let listItemPokemon = document.createElement("li"); // create li elememnt
 
-        // new code : add bootstrap class for list group
-        listItemPokemon.classList.add('list-group-item');
+        let listItem = document.createElement("li");
+        listItem.classList.add('list-group-item');
+        // add rest of the listItem content here 
+
 
         let button = document.createElement("button"); // creates a button
-
         // set the button text and class
         button.innerText = pokemon.name;
         button.classList.add("btn, btn-primary"); // targets css rule for style to button. // changed no longer targets css rule for style to button
 
-        // new code lines 2.10
-        //button.setAttribute('data-toggle', 'modal');
-        //button.setAttribute('data-target', '#pokemonModal');
-        //targets css rules for style to button
-
-
+        
         //append the button to the list item, and the list item to the list
-        listItemPokemon.appendChild(button);
-        pokemonList.appendChild(listItemPokemon);
+        listItem.appendChild(button);
+        pokemonList.appendChild(listItem);
 
         // add event listener to the button code added as part of 2.6 task.
         button.addEventListener("click", function () {
@@ -209,16 +204,16 @@ let pokemonRepository = (function () {
 
 
     return {
+
         add: add,
-        findByName: findByName, // 2.5 task code
         getAll: getAll,
         addListItem: addListItem, // 2.6 task code
-        loadList: loadList,// 2.7 task code recently added
-        loadDetails: loadDetails, // 2.7 task code recently added
-        showDetails: showDetails // 2.6 task code
-
-
-        
+        loadList: loadList, // 2.7 task code
+        loadDetails: loadDetails, // 2.7 task code
+        showDetails: showDetails, // 2.7 task code
+        showModal: showModal, // 2.8
+        hideModal: hideModal, //2.8
+        findByName: findByName // 2.5 task code
 
     };
 
