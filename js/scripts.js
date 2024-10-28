@@ -3,9 +3,10 @@ let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
- 
+    // comment out the following code - no longer needed after task 2.10 remove old modal content
     let modalContainer = document.querySelector('#modal-container');
     let dialogPromiseRejects; // this can be set later, by showDialog
+
 
     // function to show a loading message
     function showLoadingMessage() {
@@ -23,7 +24,7 @@ let pokemonRepository = (function () {
         }
     }
 
-
+    // function to add a new Pokemon object to the list
     function add(pokemon) {
         if (typeof pokemon === 'object' &&
             'name' in pokemon &&
@@ -34,14 +35,13 @@ let pokemonRepository = (function () {
             console.log('Invalid Pokémon object');
         }
     }
-   
+
+    // function to retrieve all pokemon from the list
     function getAll() {
         return pokemonList;
     }
 
- 
-
-    
+    // function to load the Pokemon list from the API
     function loadList() {
         showLoadingMessage(); // show loading before starting the fetch
         return fetch(apiUrl)
@@ -66,7 +66,7 @@ let pokemonRepository = (function () {
             });
     }
 
-    
+    // function to load Pokemon details 
     function loadDetails(pokemon) {
         showLoadingMessage(); // show loading when fetching details 
         let url = pokemon.detailsUrl;
@@ -92,7 +92,7 @@ let pokemonRepository = (function () {
             });
     }
 
-   
+    // function to show Pokemon details 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
             showModal(pokemon);
@@ -102,7 +102,8 @@ let pokemonRepository = (function () {
 
     // add new function showModal(pokemon) here to display pokemon detials
     // refactor code 2.10 for bootstrap modal
-
+    // function to display Pokemon details in a Bootstrap modal
+    // revision per mentor request
     function showModal(pokemon) {
 
         let modalTitle = document.querySelector('.modal-title');
@@ -167,13 +168,15 @@ let pokemonRepository = (function () {
 
 
     // 2.5 bonus task function findByName
+    // function to find Pokemon by name
     function findByName(name) {
         return pokemonList.filter(pokemon => pokemon.name.toLowerCase() === name.toLowerCase());
     }
 
 
-    // 2.7 move this function addListItem(pokemon) up here under function getAll()
     // refactor code 2.10 
+    // function to add a Pokemon item to the list
+    // revision per mentor request 
     function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
         let pokemonList = document.querySelector(".pokemon-list");
         let listItemPokemon = document.createElement("li"); // create li elememnt
@@ -185,11 +188,11 @@ let pokemonRepository = (function () {
 
         // set the button text and class
         button.innerText = pokemon.name;
-        button.classList.add("btn"); // targets css rule for style to button. // changed no longer targets css rule for style to button
+        button.classList.add("btn, btn-primary"); // targets css rule for style to button. // changed no longer targets css rule for style to button
 
         // new code lines 2.10
-        button.setAttribute('data-toggle', 'modal');
-        button.setAttribute('data-target', '#pokemonModal');
+        //button.setAttribute('data-toggle', 'modal');
+        //button.setAttribute('data-target', '#pokemonModal');
         //targets css rules for style to button
 
 
@@ -213,6 +216,10 @@ let pokemonRepository = (function () {
         loadList: loadList,// 2.7 task code recently added
         loadDetails: loadDetails, // 2.7 task code recently added
         showDetails: showDetails // 2.6 task code
+
+
+        
+
     };
 
 })();
