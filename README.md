@@ -51,6 +51,35 @@ Get the correct script tag here [jqueryCore] <br>
 
 # Add .eslintrc file to app
 
+1. Add rules for eslint file
+This site was used for [eslintRules] <br>
+(https://github.com/mydea/simple-pokedex-app/blob/master/.eslintrc)
+
+2. Create file in app called ".eslintrc"
+copy-paste code from link above.
+create new rules if needed.
+For a list of rule [Eslint-Rules] <br>
+(https://eslint.org/docs/latest/rules/).
+
+3. Create one new folder in pokemon app called "dist".
+This folder will contain transpiled and minified for your project 
+
+- create file scripts.dist.js
+This site was used to [minifyJavaScript] <br>
+(https://www.toptal.com/developers/javascript-minifier).
+
+- create file styles.dist.css
+This site was used to [minifyCSS] <br>
+(https://www.freeformatter.com/css-minifier.html#before-output).
+
+Place transpilled and minified code in desiganted files 
+
+4. Make sure to link new files created in your index.html 
+
+
+
+
+
 
 
 
