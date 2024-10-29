@@ -1,4 +1,6 @@
 # pokedex-app
+
+This site was built by using [pokeapi] (https://pokeapi.co/).
 I was instructed to build a simple app. 
 Building the application from HTML, JAVASCRIPT, & CSS.
 Along with making sure the app linked to an external API
@@ -14,6 +16,11 @@ display name, height, image, and tries to show types only appears as objects.
 lets you close out of modal when hitting esc or close button.
 
 --------------------------------------------------------------
+
+# add bootstrap to pokedex app
+
+
+This site was used for this project [Getbootstrap] (https://getbootstrap.com/docs/4.3/getting-started/introduction/#quick-start).
 
 added Bootstrap to PokeDex App via CDN Link thanks to documentation for bootstrap.
 https://getbootstrap.com/docs/4.3/getting-started/introduction/#quick-start
