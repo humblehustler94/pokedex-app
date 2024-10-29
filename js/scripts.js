@@ -41,6 +41,34 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
+
+    // refactor code 2.10 
+    // function to add a Pokemon item to the list
+    // revision per mentor request 
+    function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
+        // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
+
+        let pokemonList = document.querySelector(".pokemon-list");
+        // new code lines 2.10
+
+        let listItemPokemon = document.createElement("li"); // create li elememnt
+        listItemPokemon.classList.add('list-group-item');
+
+        // add rest of the listItemPokemon content here
+
+        let button = document.createElement("button"); // creates a button
+        // set the button text and class
+        button.innerText = pokemon.name;
+        button.classList.add("button-class"); // targets css rule for style to button.
+        //append the button to the list item, and the list item to the list
+        listItemPokemon.appendChild(button);
+        pokemonList.appendChild(listItemPokemon);
+        // add event listener to the button code added as part of 2.6 task.
+        button.addEventListener("click", function () {
+            showDetails(pokemon); // pass the pokemon object to showDetails
+        });
+    }
+
     // function to load the Pokemon list from the API
     function loadList() {
         showLoadingMessage(); // show loading before starting the fetch
@@ -105,40 +133,69 @@ let pokemonRepository = (function () {
     // function to display Pokemon details in a Bootstrap modal
     // revision per mentor request
     function showModal(pokemon) {
+        // new code lines 2.10 
         let modalTitle = document.querySelector('.modal-title');
         let modalBody = document.querySelector('.modal-body');
 
         modalTitle.innerText = pokemon.name;
-        modalBody.innerText = ''; // clears all previous content
+        modalBody.innerText = ''; // clears previous content
 
+        // add new elements here
         let imageElement = document.createElement('img');
         imageElement.classList.add('modal-img');
         imageElement.src = pokemon.imageUrl;
         imageElement.alt = pokemon.name + 'image';
 
         let heightElement = document.createElement('p');
-        heightElement.innerText = 'Height: ' + pokemon.height;
+        heightElement.innerText = 'Height:' + pokemon.height;
 
         let typesElement = document.createElement('p');
-        typesElement.innerText = 'Types: ' + pokemon.types.join(', ');
+        typesElement.innerText = 'Types:' + pokemon.types.join(',');
+
     
-        // append new elements 
+        //modalContainer.innerHTML = ''; // clears previous content
+
+        //let modal = document.createElement('div');
+        // modal.classList.add('modal');
+
+        // add new modal content here
         modalBody.appendChild(imageElement);
         modalBody.appendChild(heightElement);
         modalBody.appendChild(typesElement);
 
-        // new code line to display modal
-        $('#pokemonModal').modal('show'); // bootstraps modal display method
+        // code line that will display bootstrap modal
+        $('#pokemonModal').modal('show');
 
-        //modalContainer.innerHTML = ''; // clears previous content
 
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
         // Add the new modal content
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
         closeButtonElement.innerText = 'Close';
         closeButtonElement.addEventListener('click', hideModal);
+
+        //let titleElement = document.createElement('h1');
+        //titleElement.innerText = pokemon.name;
+
+        //let imageElement = document.createElement('img');
+        //imageElement.classList.add('modal-img');
+        //imageElement.src = pokemon.imageUrl;
+        //imageElement.alt = pokemon.name + 'image';
+
+        // let heightElement = document.createElement('p');
+        // heightElement.innerText = 'Height: ' + pokemon.height;
+        // new code line added
+        // let typesElement = document.createElement('p');
+        // typesElement.innerText = 'Types: ' + pokemon.types.join(', ');
+
+        // modal.appendChild(closeButtonElement);
+        // modal.appendChild(titleElement);
+        // modal.appendChild(imageElement);
+        // modal.appendChild(heightElement);
+        // modal.appendChild(typesElement);
+        // modalContainer.appendChild(modal);
+
+        // modalContainer.classList.add('is-visible');
+
     }
 
     // add new function 2.8
@@ -173,26 +230,7 @@ let pokemonRepository = (function () {
     }
 
 
-    // refactor code 2.10 
-    // function to add a Pokemon item to the list
-    // revision per mentor request 
-    function addListItem(pokemon) { // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
-        // function addListItem added in 2.6 creates pokemon list w/ containers wrapped on the outside thanks to button-class -css rule.
-        let pokemonList = document.querySelector(".pokemon-list");
-        let listItemPokemon = document.createElement("li"); // create li elememnt
-        let button = document.createElement("button"); // creates a button
-        // set the button text and class
-        button.innerText = pokemon.name;
-        button.classList.add("button-class"); // targets css rule for style to button.
-        //append the button to the list item, and the list item to the list
-        listItemPokemon.appendChild(button);
-        pokemonList.appendChild(listItemPokemon);
-        // add event listener to the button code added as part of 2.6 task.
-        button.addEventListener("click", function () {
-            showDetails(pokemon); // pass the pokemon object to showDetails
-        });
 
-    }
 
 
 

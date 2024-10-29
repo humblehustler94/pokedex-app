@@ -27,11 +27,13 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index.html"><img src="img/pokemon-logo.png" alt="pokemon-logo">PokeDex App</a>
+
             <!-- step 6: add the navbar-toggler-icon -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
@@ -51,54 +53,56 @@
 
         </nav>
     </header>
+
     <main>
         <!-- main app content here -->
         <div id="modal-container"></div>
-    
+
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-10">
-                    <h1 class="text-center">PokeMon List</h1>
-                   <div>
-                    <ul class="list-group pokemon-list"></ul>
-                   </div>
+                    <h1 class="text-center">Pokemon List</h1>
+                    <div>
+                        <ul class="list-group pokemon-list"></ul>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <button type="button" class="btn btn=primary" data-toggle="modal" data-target="#pokemonModal"></button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pokemonModal"></button>
 
         <!-- code runs as of now I am able to click on the buttons on the app and still see my css style rules applied-->
-         <!--step 7: add the modal to app bootstrap version-->
-         <!--modal-->
-         <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="pokemonModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <ul class="list-group pokemon-list">
-              <li class="list-group-item"></li>
-            </ul>
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+        <!--step 7: add the modal to app bootstrap version-->
+        <!--modal-->
+        <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pokemonModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group pokemon-list">
+                            <li class="list-group-item"></li>
+                        </ul>
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
 
-      
 
-   
+
+
 
 
 
