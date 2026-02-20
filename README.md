@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Pokedex App Logo](img/logo.png) <!-- TODO: Add a project logo (e.g., a stylized Poké Ball or a custom app icon) -->
+![Pokedex App Logo](img/pokemon-logo.png) <!-- TODO: Add a project logo (e.g., a stylized Poké Ball or a custom app icon) -->
 
 [![GitHub stars](https://img.shields.io/github/stars/humblehustler94/pokedex-app?style=for-the-badge)](https://github.com/humblehustler94/pokedex-app/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/humblehustler94/pokedex-app?style=for-the-badge)](https://github.com/humblehustler94/pokedex-app/network)
